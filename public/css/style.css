@@ -1,0 +1,166 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Georgia, serif;
+  background: #f9f9f7;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #ddd;
+}
+
+nav a {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+nav a:hover {
+  opacity: 0.5;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  margin-bottom: 2rem;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.grid a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.grid img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  background: #eee;
+}
+
+.grid p {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Artwork detail */
+.artwork-detail img {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  background: #eee;
+  margin-bottom: 2rem;
+}
+
+.artwork-detail h1 {
+  margin-bottom: 0.5rem;
+}
+
+.artwork-detail p {
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+
+.artwork-detail a {
+  display: inline-block;
+  margin-top: 2rem;
+  color: #1a1a1a;
+  text-decoration: underline;
+}
+
+/* Admin */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 600px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+input,
+textarea {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button,
+a[href="/admin/new"] {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: #1a1a1a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+button:hover,
+a[href="/admin/new"]:hover {
+  background: #444;
+}
+
+button[type="submit"]:not(:only-child) {
+  background: #c0392b;
+}

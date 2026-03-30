@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const path = require("path");
+const artworksRouter = require("./routes/artworks");
+const adminRouter = require("./routes/admin");
 require("dotenv").config();
 
 const app = express();
@@ -9,7 +11,7 @@ const app = express();
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log("MongoDB connected")) //.then() bc it's async, we wait for the connection to be established before logging success
   .catch((err) => console.log(err));
 
 // Middleware
@@ -18,10 +20,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
-// Routes (placeholders for now)
-app.get("/", (req, res) => {
-  res.send("Home — coming soon");
+app.get("/", async (req, res) => {
+  const Artwork = require("./models/Artwork");
+  const artworks = await Artwork.find().sort({ createdAt: -1 }).limit(6);
+  res.render("index", { artworks });
 });
+
+app.use("/artworks", artworksRouter);
+app.use("/admin", adminRouter);
 
 // 404 fallback
 app.use((req, res) => {

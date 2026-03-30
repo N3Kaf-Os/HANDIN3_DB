@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head><%- include('partials/head', { title: artwork.title }) %></head>
+  <body>
+    <%- include('partials/nav') %>
+    <main class="artwork-detail">
+      <img src="/<%= artwork.imagePath %>" alt="<%= artwork.title %>" />
+      <h1><%= artwork.title %></h1>
+      <% if (artwork.medium) { %><p><%= artwork.medium %></p><% } %>
+      <% if (artwork.year) { %><p><%= artwork.year %></p><% } %>
+      <% if (artwork.description) { %><p><%= artwork.description %></p><% } %>
+      <a href="/artworks">← Back to gallery</a>
+    </main>
+  </body>
+  </html>

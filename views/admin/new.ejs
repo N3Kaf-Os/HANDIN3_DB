@@ -1,0 +1,19 @@
+ <!DOCTYPE html>
+  <html lang="en">
+  <head><%- include('../partials/head', { title: 'New Artwork' }) %></head>
+  <body>
+    <%- include('../partials/nav') %>
+    <main>
+      <h1>New Artwork</h1>
+      <form action="/admin" method="POST" enctype="multipart/form-data">
+        <label>Title <input type="text" name="title" required /></label>
+        <label>Slug <input type="text" name="slug" required /></label>
+        <label>Medium <input type="text" name="medium" /></label>
+        <label>Year <input type="number" name="year" /></label>
+        <label>Description <textarea name="description"></textarea></label>
+        <label>Image <input type="file" name="image" accept=".jpg,.jpeg,.png,.pdf" required /></label>
+        <button type="submit">Create</button>
+      </form>
+    </main>
+  </body>
+  </html>

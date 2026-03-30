@@ -4,6 +4,7 @@ const methodOverride = require("method-override");
 const path = require("path");
 const artworksRouter = require("./routes/artworks");
 const adminRouter = require("./routes/admin");
+const Artwork = require("./models/Artwork");
 require("dotenv").config();
 
 const app = express();
@@ -20,8 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
+// Routes
 app.get("/", async (req, res) => {
-  const Artwork = require("./models/Artwork");
   const artworks = await Artwork.find().sort({ createdAt: -1 }).limit(6);
   res.render("index", { artworks });
 });
@@ -31,7 +32,7 @@ app.use("/admin", adminRouter);
 
 // 404 fallback
 app.use((req, res) => {
-  res.status(404).send("404 — page not found");
+  res.status(404).render("404");
 });
 
 const PORT = process.env.PORT || 3000;

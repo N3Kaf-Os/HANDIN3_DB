@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head><%- include('../partials/head', { title: 'Admin' }) %></head>
+  <body>
+    <%- include('../partials/nav') %>
+    <main>
+      <h1>Admin</h1>
+      <a href="/admin/new">+ New Artwork</a>
+      <table>
+        <thead>
+          <tr><th>Title</th><th>Year</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+          <% artworks.forEach(artwork => { %>
+            <tr>
+              <td><%= artwork.title %></td>
+              <td><%= artwork.year || '—' %></td>
+              <td>
+                <a href="/admin/<%= artwork._id %>/edit">Edit</a>
+                <form action="/admin/<%= artwork._id %>?_method=DELETE" method="POST" style="display:inline">
+                  <button type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </main>
+  </body>
+  </html>

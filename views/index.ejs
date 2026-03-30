@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head><%- include('partials/head', { title: 'Home' }) %></head>
+  <body>
+    <%- include('partials/nav') %>
+    <main>
+      <h1>Portfolio</h1>
+      <div class="grid">
+        <% artworks.forEach(artwork => { %>
+          <a href="/artworks/<%= artwork.slug %>">
+            <img src="/<%= artwork.imagePath %>" alt="<%= artwork.title %>" />
+            <p><%= artwork.title %></p>
+          </a>
+        <% }) %>
+      </div>
+    </main>
+  </body>
+  </html>

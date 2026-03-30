@@ -2,18 +2,43 @@
   <html lang="en">
   <head><%- include('../partials/head', { title: 'New Artwork' }) %></head>
   <body>
-    <%- include('../partials/nav') %>
-    <main>
-      <h1>New Artwork</h1>
-      <form action="/admin" method="POST" enctype="multipart/form-data">
-        <label>Title <input type="text" name="title" required /></label>
-        <label>Slug <input type="text" name="slug" required /></label>
-        <label>Medium <input type="text" name="medium" /></label>
-        <label>Year <input type="number" name="year" /></label>
-        <label>Description <textarea name="description"></textarea></label>
-        <label>Image <input type="file" name="image" accept=".jpg,.jpeg,.png,.pdf" required /></label>
-        <button type="submit">Create</button>
-      </form>
-    </main>
+    <div class="layout">
+      <%- include('../partials/nav') %>
+      <main class="main-content">
+        <h1>New Artwork</h1>
+        <form action="/admin" method="POST" enctype="multipart/form-data" class="form-stack">
+          <div class="form-field">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" required />
+          </div>
+          <div class="form-field">
+            <label for="slug">Slug</label>
+            <input type="text" id="slug" name="slug" required />
+          </div>
+          <div class="form-field">
+            <label for="medium">Medium</label>
+            <input type="text" id="medium" name="medium" />
+          </div>
+          <div class="form-field">
+            <label for="year">Year</label>
+            <input type="number" id="year" name="year" />
+          </div>
+          <div class="form-field">
+            <label for="description">Description</label>
+            <textarea id="description" name="description"></textarea>
+          </div>
+          <div class="form-field">
+            <label>Image</label>
+            <div class="file-input-wrapper">
+              <label class="file-input-label" for="image">Choose file (JPEG, PNG, PDF — max
+  50MB)</label>
+              <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.pdf"
+  required />
+            </div>
+          </div>
+          <button type="submit" class="btn">Save</button>
+        </form>
+      </main>
+    </div>
   </body>
   </html>

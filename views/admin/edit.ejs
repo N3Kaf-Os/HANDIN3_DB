@@ -2,20 +2,49 @@
   <html lang="en">
   <head><%- include('../partials/head', { title: 'Edit Artwork' }) %></head>
   <body>
-    <%- include('../partials/nav') %>
-    <main>
-      <h1>Edit Artwork</h1>
-      <form action="/admin/<%= artwork._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-        <label>Title <input type="text" name="title" value="<%= artwork.title %>" required /></label>
-        <label>Slug <input type="text" name="slug" value="<%= artwork.slug %>" required /></label>
-        <label>Medium <input type="text" name="medium" value="<%= artwork.medium || '' %>" /></label>
-        <label>Year <input type="number" name="year" value="<%= artwork.year || '' %>" /></label>
-        <label>Description <textarea name="description"><%= artwork.description || '' %></textarea></label>
-        <label>New Image (leave blank to keep current) <input type="file" name="image" accept=".jpg,.jpeg,.png,.pdf"
-   /></label>
-        <img src="/<%= artwork.imagePath %>" alt="current" style="max-width:200px" />
-        <button type="submit">Update</button>
-      </form>
-    </main>
+    <div class="layout">
+      <%- include('../partials/nav') %>
+      <main class="main-content">
+        <h1>Edit Artwork</h1>
+        <form action="/admin/<%= artwork._id %>?_method=PUT" method="POST"
+  enctype="multipart/form-data" class="form-stack">
+          <div class="form-field">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" value="<%= artwork.title %>" required
+  />
+          </div>
+          <div class="form-field">
+            <label for="slug">Slug</label>
+            <input type="text" id="slug" name="slug" value="<%= artwork.slug %>" required />
+          </div>
+          <div class="form-field">
+            <label for="medium">Medium</label>
+            <input type="text" id="medium" name="medium" value="<%= artwork.medium %>" />
+          </div>
+          <div class="form-field">
+            <label for="year">Year</label>
+            <input type="number" id="year" name="year" value="<%= artwork.year %>" />
+          </div>
+          <div class="form-field">
+            <label for="description">Description</label>
+            <textarea id="description" name="description"><%= artwork.description
+  %></textarea>
+          </div>
+          <div class="form-field">
+            <label>Image</label>
+            <% if (artwork.imagePath) { %>
+              <div class="current-image">
+                <img src="/<%= artwork.imagePath %>" alt="current" />
+              </div>
+            <% } %>
+            <div class="file-input-wrapper">
+              <label class="file-input-label" for="image">Replace image (optional)</label>
+              <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.pdf" />
+            </div>
+          </div>
+          <button type="submit" class="btn">Update</button>
+        </form>
+      </main>
+    </div>
   </body>
   </html>

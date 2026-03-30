@@ -1,18 +1,23 @@
-  <!DOCTYPE html>
+ <!DOCTYPE html>
   <html lang="en">
   <head><%- include('partials/head', { title: 'Gallery' }) %></head>
   <body>
-    <%- include('partials/nav') %>
-    <main>
-      <h1>Gallery</h1>
-      <div class="grid">
-        <% artworks.forEach(artwork => { %>
-          <a href="/artworks/<%= artwork.slug %>">
-            <img src="/<%= artwork.imagePath %>" alt="<%= artwork.title %>" />
-            <p><%= artwork.title %></p>
-          </a>
-        <% }) %>
-      </div>
-    </main>
+    <div class="layout">
+      <%- include('partials/nav') %>
+      <main class="main-content">
+        <h1>Gallery</h1>
+        <div class="gallery-grid">
+          <% artworks.forEach(artwork => { %>
+            <a href="/artworks/<%= artwork.slug %>" class="gallery-card">
+              <img src="/<%= artwork.imagePath %>" alt="<%= artwork.title %>" />
+              <div class="card-meta">
+                <div class="card-title"><%= artwork.title %></div>
+                <div class="card-sub"><%= artwork.medium %> &mdash; <%= artwork.year %></div>
+              </div>
+            </a>
+          <% }) %>
+        </div>
+      </main>
+    </div>
   </body>
   </html>

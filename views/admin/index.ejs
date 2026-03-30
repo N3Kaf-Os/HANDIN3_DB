@@ -1,30 +1,42 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
   <html lang="en">
   <head><%- include('../partials/head', { title: 'Admin' }) %></head>
   <body>
-    <%- include('../partials/nav') %>
-    <main>
-      <h1>Admin</h1>
-      <a href="/admin/new">+ New Artwork</a>
-      <table>
-        <thead>
-          <tr><th>Title</th><th>Year</th><th>Actions</th></tr>
-        </thead>
-        <tbody>
-          <% artworks.forEach(artwork => { %>
+    <div class="layout">
+      <%- include('../partials/nav') %>
+      <main class="main-content">
+        <div class="admin-header">
+          <h1>Artworks</h1>
+          <a href="/admin/new" class="btn">+ New</a>
+        </div>
+        <table>
+          <thead>
             <tr>
-              <td><%= artwork.title %></td>
-              <td><%= artwork.year || '—' %></td>
-              <td>
-                <a href="/admin/<%= artwork._id %>/edit">Edit</a>
-                <form action="/admin/<%= artwork._id %>?_method=DELETE" method="POST" style="display:inline">
-                  <button type="submit">Delete</button>
-                </form>
-              </td>
+              <th>Title</th>
+              <th>Medium</th>
+              <th>Year</th>
+              <th></th>
             </tr>
-          <% }) %>
-        </tbody>
-      </table>
-    </main>
+          </thead>
+          <tbody>
+            <% artworks.forEach(artwork => { %>
+              <tr>
+                <td><%= artwork.title %></td>
+                <td><%= artwork.medium %></td>
+                <td><%= artwork.year %></td>
+                <td>
+                  <div class="action-links">
+                    <a href="/admin/<%= artwork._id %>/edit" class="btn-edit">Edit</a>
+                    <form action="/admin/<%= artwork._id %>?_method=DELETE" method="POST">
+                      <button type="submit" class="btn-danger">Delete</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </main>
+    </div>
   </body>
   </html>

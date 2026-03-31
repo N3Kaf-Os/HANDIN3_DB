@@ -12,7 +12,10 @@ const app = express();
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connected")) //.then() bc it's async, we wait for the connection to be established before logging success
+  .then(() => {
+    console.log("MongoDB connected");
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
   .catch((err) => console.log(err));
 
 // Middleware

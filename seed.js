@@ -193,7 +193,7 @@ const artworks = [
     medium: "Mixed media",
     year: 2026,
     description: "",
-    imagePath: "uploads/What_are_you_proud_of?.png",
+    imagePath: "uploads/What_are_you_proud_of.png",
   },
   {
     title: "Her",

@@ -4,20 +4,42 @@
   <body>
     <div class="layout">
       <%- include('partials/nav') %>
-      <main class="main-content">
-        <h1>Recent Work</h1>
-        <div class="gallery-grid">
-          <% artworks.forEach(artwork => { %>
-            <a href="/artworks/<%= artwork.slug %>" class="gallery-card">
-              <img src="/<%= artwork.imagePath %>" alt="<%= artwork.title %>" />
-              <div class="card-meta">
-                <div class="card-title"><%= artwork.title %></div>
-                <div class="card-sub"><%= artwork.medium %> &mdash; <%= artwork.year %></div>
-              </div>
-            </a>
-          <% }) %>
-        </div>
-      </main>
+      <div class="page-content">
+
+        <section class="hero">
+          <img src="/uploads/What_are_you_proud_of.png" alt="What are you proud of?" class="hero-img" />
+          <div class="hero-scroll-hint">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+        </section>
+
+        <section class="recent-works">
+          <h1>Recent Work</h1>
+          <div class="gallery-grid">
+            <% artworks.forEach(artwork => { %>
+              <a href="/artworks/<%= artwork.slug %>" class="gallery-card">
+                <img src="/<%= artwork.imagePath %>" alt="<%= artwork.title %>" />
+                <div class="card-meta">
+                  <div class="card-title"><%= artwork.title %></div>
+                  <div class="card-sub"><%= artwork.medium %> &mdash; <%= artwork.year %></div>
+                </div>
+              </a>
+            <% }) %>
+          </div>
+        </section>
+
+      </div>
     </div>
+
+    <script>
+      const heroImg = document.querySelector('.hero-img');
+      const hero = document.querySelector('.hero');
+      window.addEventListener('scroll', () => {
+        const progress = Math.min(window.scrollY / hero.offsetHeight, 1);
+        heroImg.style.opacity = 1 - progress * 1.4;
+      }, { passive: true });
+    </script>
   </body>
   </html>

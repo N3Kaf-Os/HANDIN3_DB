@@ -1,12 +1,14 @@
+// multer => express middleware.
 const multer = require("multer");
 const path = require("path");
 
+// where we store the file.
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "public/uploads/");
   },
   filename: (req, file, cb) => {
-    const unique = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const unique = Date.now() + "-" + Math.round(Math.random() * 1e9); // to avoid filename collisions.
     cb(null, unique + path.extname(file.originalname));
   },
 });

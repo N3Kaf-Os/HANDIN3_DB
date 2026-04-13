@@ -13,8 +13,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
 app.get("/", async (req, res) => {
-  const artworks = await Artwork.find().sort({ createdAt: -1 }).limit(6);
-  res.render("index", { artworks });
+  try {
+    const artworks = await Artwork.find().sort({ createdAt: -1 }).limit(6);
+    res.render("index", { artworks });
+  } catch (err) {
+    console.error(err);
+    res.status(500).render("404");
+  }
 });
 
 app.use("/artworks", artworksRouter);

@@ -38,5 +38,13 @@
         </table>
       </main>
     </div>
+    <script>
+      document.querySelectorAll("form[action*='_method=DELETE']").forEach(function (form) {
+        form.addEventListener("submit", function (e) {
+          const confirmed = window.confirm("Delete this artwork? This cannot be undone.");
+          if (!confirmed) e.preventDefault();
+        });
+      });
+    </script>
   </body>
   </html>

@@ -181,7 +181,7 @@ a {
     padding: 1.5rem;
   }
   .gallery-grid {
-    grid-template-columns: 1fr;
+    columns: 1;
   }
   .hero {
     height: 60svh;
@@ -197,9 +197,8 @@ a {
 /* ── Gallery grid ────────────────────────── */
 
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  columns: 3;
+  column-gap: 1.5rem;
   margin-top: 2rem;
 }
 
@@ -209,6 +208,8 @@ a {
   position: relative;
   overflow: hidden;
   border-radius: 2px;
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -223,8 +224,6 @@ a {
 
 .gallery-card img {
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
   display: block;
 }
 
@@ -519,7 +518,7 @@ tbody tr:hover {
     padding: 2rem;
   }
   .artwork-detail {
-    grid-template-columns: 1fr;
+    columns: 2;
   }
 }
 

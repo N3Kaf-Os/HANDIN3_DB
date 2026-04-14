@@ -33,10 +33,17 @@ _Admin Routes_ Full CRUD at '/admin': lists all artworks, create new ones, edit 
 ## Project structure
 
 server.js = entry point, Express config, MongoDB connection
+
 models/artwork.js = Mongoose schema and model
+
 routes/artworks.js = public-facing artwork routes
+
 routes/admin.js = admin CRUD routes
+
 views/ = EJS templates (index, gallery, artwork, 404, admin/\*)
+
 public/uploads/ = uploaded image files (served as static assets)
+
 seed.js = database seed script
+
 config/upload.js = fileFilter with a 50MB limit, i know it's a lot.

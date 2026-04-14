@@ -12,6 +12,11 @@ app.use(express.urlencoded({ extended: true })); // only parses text fields, not
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
+app.use((req, res, next) => {
+  res.locals.path = req.path;
+  next();
+});
+
 app.get("/", async (req, res) => {
   try {
     const artworks = await Artwork.find().sort({ createdAt: -1 }).limit(6);

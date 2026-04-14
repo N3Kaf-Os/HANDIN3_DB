@@ -1,8 +1,16 @@
 <aside class="sidebar">
   <span class="site-title">Portfolio</span>
   <nav>
-    <a href="/">Home</a>
-    <a href="/artworks">Gallery</a>
-    <a href="/admin">Admin</a>
+    <a href="/" class="<%= path === '/' ? 'nav-active' : '' %>">Home</a>
+    <a
+      href="/artworks"
+      class="<%= path.startsWith('/artworks') ? 'nav-active' : '' %>"
+      >Gallery</a
+    >
+    <a
+      href="/admin"
+      class="<%= path.startsWith('/admin') ? 'nav-active' : '' %>"
+      >Admin</a
+    >
   </nav>
 </aside>

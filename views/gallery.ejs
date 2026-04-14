@@ -5,7 +5,11 @@
     <div class="layout">
       <%- include('partials/nav') %>
       <main class="main-content">
-        <h1>Gallery</h1>
+        <header class="gallery-header">
+          <h1>Gallery</h1>
+          <span class="gallery-count"><%= artworks.length %> works</span>
+        </header>
+        <hr class="gallery-rule" />
         <div class="gallery-grid">
           <% artworks.forEach(artwork => { %>
             <a href="/artworks/<%= artwork.slug %>" class="gallery-card">

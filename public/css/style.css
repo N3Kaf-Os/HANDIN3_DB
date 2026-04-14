@@ -64,6 +64,7 @@ a {
 
 .site-title {
   font-family: "Fraunces", serif;
+  font-style: italic;
   font-size: 1.1rem;
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -84,6 +85,7 @@ a {
 }
 
 .sidebar nav a::after {
+  font-style: italic;
   content: "";
   position: absolute;
   bottom: -1px;
@@ -99,6 +101,15 @@ a {
 }
 
 .sidebar nav a:hover::after {
+  width: 100%;
+}
+
+.sidebar nav a.nav-active {
+  color: var(--text);
+  font-style: italic;
+}
+
+.sidebar nav a.nav-active::after {
   width: 100%;
 }
 
@@ -196,6 +207,25 @@ a {
 
 /* ── Gallery grid ────────────────────────── */
 
+.gallery-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.gallery-count {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.gallery-rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 1rem 0 2rem;
+}
+
 .gallery-grid {
   columns: 3;
   column-gap: 1.5rem;
@@ -245,8 +275,7 @@ a {
 }
 
 .gallery-grid:has(.gallery-card:hover) .gallery-card:not(:hover) {
-  opacity: 0.65;
-  filter: saturate(0.01);
+  filter: brightness(0.8);
   transition:
     opacity 0.3s ease,
     filter 0.3s ease;

@@ -206,14 +206,18 @@ a {
 .gallery-card {
   display: block;
   background: var(--surface);
-  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
   transition:
-    transform var(--transition),
-    box-shadow var(--transition);
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease,
+    filter 0.3s ease;
 }
 
 .gallery-card:hover {
-  transform: translateY(-4px);
+  transform: scale(1.015);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
 }
 
@@ -225,7 +229,20 @@ a {
 }
 
 .card-meta {
-  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.75rem 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-card:hover .card-meta {
+  transform: translateY(0);
 }
 
 .card-title {

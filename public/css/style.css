@@ -246,8 +246,8 @@ a {
 }
 
 .gallery-grid:has(.gallery-card:hover) .gallery-card:not(:hover) {
-  opacity: 0.45;
-  filter: saturate(0.3);
+  opacity: 0.65;
+  filter: saturate(0.01);
   transition:
     opacity 0.3s ease,
     filter 0.3s ease;

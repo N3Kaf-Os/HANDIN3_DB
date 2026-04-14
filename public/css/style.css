@@ -245,6 +245,14 @@ a {
   transform: translateY(0);
 }
 
+.gallery-grid:has(.gallery-card:hover) .gallery-card:not(:hover) {
+  opacity: 0.45;
+  filter: saturate(0.3);
+  transition:
+    opacity 0.3s ease,
+    filter 0.3s ease;
+}
+
 .card-title {
   font-family: "Fraunces", serif;
   font-size: 1rem;

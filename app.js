@@ -1,4 +1,5 @@
 const express = require("express");
+const session = require("express-session");
 const methodOverride = require("method-override");
 const path = require("path");
 const artworksRouter = require("./routes/artworks");
@@ -11,6 +12,15 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true })); // only parses text fields, not files => multer handles file uploads
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+
+// Sessions — required by admin auth. Server.js enforces SESSION_SECRET in prod; fallback keeps tests green.
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "test-secret",
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 
 app.use((req, res, next) => {
   res.locals.path = req.path;

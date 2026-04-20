@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('../partials/head', { title: 'Admin Login' }) %></head>
+<body>
+  <div class="layout">
+    <%- include('../partials/nav') %>
+    <main class="main-content">
+      <h1>Admin Login</h1>
+      <% if (error) { %>
+        <p class="error"><%= error %></p>
+      <% } %>
+      <form action="/admin/login" method="POST" class="form-stack">
+        <div class="form-field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required autofocus />
+        </div>
+        <button type="submit" class="btn">Sign in</button>
+      </form>
+    </main>
+  </div>
+</body>
+</html>

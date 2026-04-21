@@ -5,6 +5,15 @@ const upload = require("../config/upload");
 const { generateSlug } = require("../utils/slug");
 const { verifyPassword } = require("../utils/auth");
 const requireAuth = require("../middleware/requireAuth");
+const rateLimit = require("express-rate-limit");
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: "Too many login attempts, please try again later",
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // --- public auth routes (MUST come before requireAuth is mounted) ---
 
@@ -12,8 +21,11 @@ router.get("/login", (req, res) => {
   res.render("admin/login", { error: null });
 });
 
-router.post("/login", async (req, res) => {
-  const ok = await verifyPassword(req.body.password, process.env.ADMIN_PASSWORD_HASH);
+router.post("/login", loginLimiter, async (req, res) => {
+  const ok = await verifyPassword(
+    req.body.password,
+    process.env.ADMIN_PASSWORD_HASH,
+  );
   if (!ok) {
     return res.status(200).render("admin/login", { error: "Invalid password" });
   }

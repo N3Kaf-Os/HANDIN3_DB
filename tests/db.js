@@ -7,6 +7,11 @@ let mongod;
 async function connect() {
   mongod = await MongoMemoryServer.create();
   await mongoose.connect(mongod.getUri());
+
+  // Force all registered models to build their indexes now.
+  // Without this, `unique: true` indexes build lazily and duplicate-key
+  // tests can race — the second insert lands before the index exists.
+  await Promise.all(Object.values(mongoose.models).map((m) => m.init()));
 }
 
 //shut down after all tests finish.

@@ -4,6 +4,7 @@ const methodOverride = require("method-override");
 const path = require("path");
 const artworksRouter = require("./routes/artworks");
 const adminRouter = require("./routes/admin");
+const gatekeeper = require("./middleware/gatekeeper");
 const Artwork = require("./models/Artwork");
 
 const app = express();
@@ -26,6 +27,20 @@ app.use((req, res, next) => {
   res.locals.path = req.path;
   next();
 });
+
+app.get("/enter", (req, res) => {
+  res.render("enter");
+});
+
+app.post("/enter", (req, res) => {
+  if (req.body.website) {
+    return res.status(403).send("Forbidden");
+  }
+  req.session.entered = true;
+  res.redirect("/");
+});
+
+app.use(gatekeeper);
 
 app.get("/", async (req, res) => {
   try {
